@@ -50,14 +50,14 @@ Creates simple financial tracker API using ExpresJS & Typescript, also connects 
 
 | HTTP Request | URL                                               | Explanation           |
 |:------------:|:------------------------------------------------- | --------------------- |
-| GET          | https://adri-w8-be.up.railway.app/                | Hello World           |
-| GET          | https://adri-w8-be.up.railway.app/*               | Return 404            |
-| GET          | https://adri-w8-be.up.railway.app/transaction/    | Get all data          |
-| GET          | https://adri-w8-be.up.railway.app/transaction/:id | Get data by ID        |
-| POST         | https://adri-w8-be.up.railway.app/transaction/    | Post new data         |
-| PUT          | https://adri-w8-be.up.railway.app/transaction/:id | Update all data       |
-| PATCH        | https://adri-w8-be.up.railway.app/transaction/:id | Update data partially |
-| DELETE       | https://adri-w8-be.up.railway.app/transaction/:id | Delete data           |
+| GET          | https://adri-w9-be.up.railway.app/                | Hello World           |
+| GET          | https://adri-w9-be.up.railway.app/*               | Return 404            |
+| GET          | https://adri-w9-be.up.railway.app/transaction/    | Get all data          |
+| GET          | https://adri-w9-be.up.railway.app/transaction/:id | Get data by ID        |
+| POST         | https://adri-w9-be.up.railway.app/transaction/    | Post new data         |
+| PUT          | https://adri-w9-be.up.railway.app/transaction/:id | Update all data       |
+| PATCH        | https://adri-w9-be.up.railway.app/transaction/:id | Update data partially |
+| DELETE       | https://adri-w9-be.up.railway.app/transaction/:id | Delete data           |
 
 ## API Body
 
@@ -71,4 +71,4 @@ Creates simple financial tracker API using ExpresJS & Typescript, also connects 
 
 Front-end: https://adriantori-w8.netlify.app
 
-Back-end: https://adri-w8-be.up.railway.app/
+Back-end: https://adri-w9-be.up.railway.app/
