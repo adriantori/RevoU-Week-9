@@ -1,6 +1,6 @@
 export default async function saveEditHTML(htmlId: Array<string|number>){
     console.log("masuk edit");
-    const api_url = `https://adri-w8-be.up.railway.app/transaction/${htmlId[0]}`;
+    const api_url = `https://adri-w9-be.up.railway.app/transaction/${htmlId[0]}`;
     const basket: Array<string|number> = [htmlId[0], htmlId[1], htmlId[2], htmlId[3], htmlId[4]]
 
     const response = await fetch(api_url, {

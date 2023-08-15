@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 function editElement(outputId) {
     return __awaiter(this, void 0, void 0, function* () {
-        const api_url = `https://adri-w8-be.up.railway.app/transaction/${outputId}`;
+        const api_url = `https://adri-w9-be.up.railway.app/transaction/${outputId}`;
         const response = yield fetch(api_url, { method: 'GET' });
         const data = yield response.json();
         document.getElementById('idEdit').value = data.id;

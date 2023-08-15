@@ -1,5 +1,5 @@
 async function deleteElement(outputId :number){
-    const api_url = `https://adri-w8-be.up.railway.app/transaction/${outputId}`;
+    const api_url = `https://adri-w9-be.up.railway.app/transaction/${outputId}`;
     const elementRemove = document.getElementById(`output-${outputId}`);
     const parentElement = elementRemove?.parentNode;
 

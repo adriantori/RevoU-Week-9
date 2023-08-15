@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 function deleteElement(outputId) {
     return __awaiter(this, void 0, void 0, function* () {
-        const api_url = `https://adri-w8-be.up.railway.app/transaction/${outputId}`;
+        const api_url = `https://adri-w9-be.up.railway.app/transaction/${outputId}`;
         const elementRemove = document.getElementById(`output-${outputId}`);
         const parentElement = elementRemove === null || elementRemove === void 0 ? void 0 : elementRemove.parentNode;
         let confirmDelete = confirm("Are you sure to delete this data?");

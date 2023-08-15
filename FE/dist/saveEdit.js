@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 export default function saveEditHTML(htmlId) {
     return __awaiter(this, void 0, void 0, function* () {
         console.log("masuk edit");
-        const api_url = `https://adri-w8-be.up.railway.app/transaction/${htmlId[0]}`;
+        const api_url = `https://adri-w9-be.up.railway.app/transaction/${htmlId[0]}`;
         const basket = [htmlId[0], htmlId[1], htmlId[2], htmlId[3], htmlId[4]];
         const response = yield fetch(api_url, {
             method: 'PUT',

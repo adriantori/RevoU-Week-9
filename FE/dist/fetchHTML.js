@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { renderChart } from "./renderChart.js";
-const api_url = "https://adri-w8-be.up.railway.app/transaction";
+const api_url = "https://adri-w9-be.up.railway.app/transaction";
 export default function fetchHTML() {
     return __awaiter(this, void 0, void 0, function* () {
         const response = yield fetch(api_url, { method: 'GET' });

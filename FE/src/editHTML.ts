@@ -1,5 +1,5 @@
 async function editElement(outputId :string){
-    const api_url = `https://adri-w8-be.up.railway.app/transaction/${outputId}`
+    const api_url = `https://adri-w9-be.up.railway.app/transaction/${outputId}`
     
     const response = await fetch(api_url,{method:'GET'});
     const data = await response.json();

@@ -1,5 +1,5 @@
 import { renderChart } from "./renderChart.js";
-const api_url = "https://adri-w8-be.up.railway.app/transaction";
+const api_url = "https://adri-w9-be.up.railway.app/transaction";
 
 export default async function fetchHTML() {
     const response = await fetch(api_url, { method: 'GET' });
