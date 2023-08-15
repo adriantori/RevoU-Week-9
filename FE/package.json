@@ -1,0 +1,19 @@
+{
+  "name": "week-7",
+  "version": "1.0.0",
+  "description": "RevoU Week 7 Assignment",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Adri Antori",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.3.1",
+    "chart.js": "^4.3.3"
+  },
+  "devDependencies": {
+    "@types/bootstrap": "^5.2.6",
+    "@types/chart.js": "^2.9.37"
+  }
+}
