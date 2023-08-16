@@ -13,25 +13,33 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mySqlQuery_1 = __importDefault(require("./mySqlQuery"));
-//delete transaction by id
-const deleteTransaction = (req, res) => {
+//get transaction by id
+const getTransactionByUserId = (req, res) => {
     (() => __awaiter(void 0, void 0, void 0, function* () {
         try {
+            console.log(req.params.id);
             const query = `
-                DELETE FROM revou_w9.\`transaction\`
-                WHERE id=${req.params.id};
+            SELECT u.id, u.name, u.address,
+                (
+                    SELECT
+                        SUM(CASE WHEN t.type = 'income' THEN t.amount ELSE -t.amount END) AS net_amount
+                    FROM \`transaction\` t
+                    WHERE t.user_id = u.id
+                ) AS balance,
+                (
+                    SELECT SUM(t.amount)
+                    FROM \`transaction\` t
+                    WHERE t.user_id = u.id AND t.\`type\` = 'expense'
+                ) AS expense
+            FROM \`user\` u
+            WHERE u.id = ${req.params.id};
             `;
             const response = yield (0, mySqlQuery_1.default)(query);
-            if (response.affectedRows !== 0) {
-                res.status(response.statusCode).send(`id: ${req.params.id}`);
-            }
-            else {
-                res.status(404).send("Transaction not found");
-            }
+            res.status(response.statusCode).send(response.result);
         }
         catch (error) {
             res.send(error);
         }
     }))();
 };
-exports.default = deleteTransaction;
+exports.default = getTransactionByUserId;

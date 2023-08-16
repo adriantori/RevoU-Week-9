@@ -16,6 +16,7 @@ const pageNotFound_1 = __importDefault(require("../controllers/pageNotFound"));
 const getAllUsers_js_1 = __importDefault(require("../controllers/getAllUsers.js"));
 const authSignIn_js_1 = __importDefault(require("../controllers/authSignIn.js"));
 const authSignUp_js_1 = __importDefault(require("../controllers/authSignUp.js"));
+const getTransactionByUserId_js_1 = __importDefault(require("../controllers/getTransactionByUserId.js"));
 exports.router = (0, express_1.Router)();
 //hello
 exports.router.get('/', helloWorld_js_1.default);
@@ -33,6 +34,8 @@ exports.router.put('/transaction/:id', putTransaction_1.default);
 exports.router.patch('/transaction/:id', patchTransaction_1.default);
 //get all users
 exports.router.get('/users', getAllUsers_js_1.default);
+//get transaction by user ID
+exports.router.get('/user/:id', getTransactionByUserId_js_1.default);
 //login user
 exports.router.post('/user/signin', authSignIn_js_1.default);
 //register user

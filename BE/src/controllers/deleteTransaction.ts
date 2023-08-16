@@ -1,25 +1,24 @@
-import { Request, Response, Router } from "express";
-export const router = Router();
-import transactions from "../models/model";
+import { Request, Response } from "express";
+import mySqlQuery from "./mySqlQuery";
 
 //delete transaction by id
 const deleteTransaction = (req: Request, res: Response) => {
-    const currTransaction = transactions;
-    let success: boolean = false;
-    for (let i = 0; i < currTransaction.length; i++) {
-        if (currTransaction[i].id == +req.params.id) {
-            const currentData = currTransaction[i];
-            currTransaction.splice(i, 1);
-            success = true;
-            res.status(200).json({
-                message: "success deleting data", currentData
-            });
+    (async () => {
+        try {
+            const query = `
+                DELETE FROM revou_w9.\`transaction\`
+                WHERE id=${req.params.id};
+            `;
+            const response = await mySqlQuery(query);
+            if(response.affectedRows !== 0){
+                    res.status(response.statusCode).send(`id: ${req.params.id}`);
+                }else{
+                    res.status(404).send("Transaction not found");
+                }
+        } catch (error) {
+            res.send(error);
         }
-    }
-
-    if (success == false) {
-        res.status(404).send("Error: Data not found");
-    }
+    })();
 };
 
 export default deleteTransaction;

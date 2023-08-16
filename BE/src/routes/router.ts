@@ -11,6 +11,7 @@ import pageNotFound from "../controllers/pageNotFound";
 import getAllUsers from "../controllers/getAllUsers.js";
 import authSignIn from "../controllers/authSignIn.js";
 import authSignUp from "../controllers/authSignUp.js";
+import getTransactionByUserId from "../controllers/getTransactionByUserId.js";
 
 export const router = Router();
 
@@ -37,6 +38,9 @@ router.patch('/transaction/:id', patchTransaction);
 
 //get all users
 router.get('/users', getAllUsers);
+
+//get transaction by user ID
+router.get('/user/:id', getTransactionByUserId)
 
 //login user
 router.post('/user/signin', authSignIn);

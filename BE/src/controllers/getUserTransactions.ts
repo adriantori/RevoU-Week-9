@@ -1,12 +1,10 @@
-import { Request, Response } from "express";
+import { Request, Response, query } from "express";
 import mySqlQuery from "./mySqlQuery";
 
-
-//get all transaction
-const getAllTransaction = (req: Request, res: Response) => {
+const getUserTransactions = (req: Request, res: Response) => {
     (async () => {
         try {
-            const query = 'SELECT * FROM transaction';
+            const query = 'SELECT * FROM user';
             const response = await mySqlQuery(query);
             res.status(response.statusCode).send(response.result);
         } catch (error) {
@@ -15,4 +13,4 @@ const getAllTransaction = (req: Request, res: Response) => {
     })();
 };
 
-export default getAllTransaction;
+export default getUserTransactions;

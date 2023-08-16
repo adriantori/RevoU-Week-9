@@ -1,36 +1,44 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.router = void 0;
-const express_1 = require("express");
-exports.router = (0, express_1.Router)();
-const model_1 = __importDefault(require("../models/model"));
+const mySqlQuery_1 = __importDefault(require("./mySqlQuery"));
 //put by id
 const putTransaction = (req, res) => {
-    const currTransaction = model_1.default;
-    let success = false;
-    for (let i = 0; i < currTransaction.length; i++) {
-        if (currTransaction[i].id == +req.params.id) {
-            if (req.body.type == null || req.body.name == null || req.body.detail == null || req.body.amount == null) {
-                res.status(406).send("Error: All field must be filled in");
-            }
-            else {
-                const currentData = currTransaction[i];
-                currTransaction[i].type = req.body.type;
-                currTransaction[i].name = req.body.name;
-                currTransaction[i].detail = req.body.detail;
-                currTransaction[i].amount = req.body.amount;
-                success = true;
-                res.status(200).json({
-                    message: "success updating data", currentData
-                });
-            }
-        }
+    if (req.body.type == null || req.body.amount == null || req.body.user_id == null) {
+        res.status(406).send("One of the field cannot empty");
     }
-    if (success == false) {
-        res.status(404).send("Error: ID not found");
+    else {
+        const { type, amount, user_id } = req.body;
+        (() => __awaiter(void 0, void 0, void 0, function* () {
+            try {
+                const query = `
+                    UPDATE revou_w9.\`transaction\`
+                    SET user_id=${user_id}, \`type\`='${type}', amount=${amount}
+                    WHERE id=${req.params.id};
+                `;
+                const response = yield (0, mySqlQuery_1.default)(query);
+                if (response.affectedRows !== 0) {
+                    res.status(response.statusCode).send(`id: ${req.params.id}`);
+                }
+                else {
+                    res.status(404).send("Transaction not found");
+                }
+            }
+            catch (error) {
+                res.send(error);
+            }
+        }))();
     }
 };
 exports.default = putTransaction;

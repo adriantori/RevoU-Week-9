@@ -2,10 +2,11 @@ import { Request, Response, Router } from "express";
 import mySqlQuery from "./mySqlQuery";
 
 //get transaction by id
-const getTransactionById = (req: Request, res: Response) => {
+const getTransactionByUserId = (req: Request, res: Response) => {
 
     (async () => {
         try {
+            console.log(req.params.id)
             const query = `
             SELECT u.id, u.name, u.address,
                 (
@@ -20,7 +21,7 @@ const getTransactionById = (req: Request, res: Response) => {
                     WHERE t.user_id = u.id AND t.\`type\` = 'expense'
                 ) AS expense
             FROM \`user\` u
-            WHERE u.id = '${req.params.id}';
+            WHERE u.id = ${req.params.id};
             `;
             const response = await mySqlQuery(query);
             res.status(response.statusCode).send(response.result);
@@ -31,4 +32,4 @@ const getTransactionById = (req: Request, res: Response) => {
 
 };
 
-export default getTransactionById;
+export default getTransactionByUserId;

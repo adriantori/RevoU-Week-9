@@ -13,27 +13,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mySqlQuery_1 = __importDefault(require("./mySqlQuery"));
-//push transaction
-const postTransaction = (req, res) => {
-    if (req.body.type == null || req.body.amount == null || req.body.user_id == null) {
-        res.status(406).send("One of the field cannot empty");
-    }
-    else {
-        const { type, amount, user_id } = req.body;
-        (() => __awaiter(void 0, void 0, void 0, function* () {
-            try {
-                const query = `
-                    INSERT INTO revou_w9.\`transaction\`
-                    (user_id, \`type\`, amount)
-                    VALUES(${user_id}, '${type}', ${amount});
-                `;
-                const response = yield (0, mySqlQuery_1.default)(query);
-                res.status(response.statusCode).send(`id: ${response.resultId}`);
-            }
-            catch (error) {
-                res.send(error);
-            }
-        }))();
-    }
+const getUserTransactions = (req, res) => {
+    (() => __awaiter(void 0, void 0, void 0, function* () {
+        try {
+            const query = 'SELECT * FROM user';
+            const response = yield (0, mySqlQuery_1.default)(query);
+            res.status(response.statusCode).send(response.result);
+        }
+        catch (error) {
+            res.send(error);
+        }
+    }))();
 };
-exports.default = postTransaction;
+exports.default = getUserTransactions;

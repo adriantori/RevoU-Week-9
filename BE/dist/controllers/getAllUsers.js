@@ -1,33 +1,28 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const mysql_1 = __importDefault(require("mysql"));
-const dotenv_1 = __importDefault(require("dotenv"));
-dotenv_1.default.config();
+const mySqlQuery_1 = __importDefault(require("./mySqlQuery"));
 const getAllUsers = (req, res) => {
-    var con = mysql_1.default.createConnection({
-        host: process.env.SQL_HOST,
-        user: process.env.SQL_USER,
-        password: process.env.SQL_PASS,
-        database: process.env.SQL_DB
-    });
-    con.connect(function (err) {
-        if (err) {
-            res.status(400).send(err);
+    (() => __awaiter(void 0, void 0, void 0, function* () {
+        try {
+            const query = 'SELECT * FROM user';
+            const response = yield (0, mySqlQuery_1.default)(query);
+            res.status(response.statusCode).send(response.result);
         }
-        else {
-            con.query("SELECT * FROM user", function (err, result, fields) {
-                if (err) {
-                    res.status(404).send(err);
-                }
-                else {
-                    return res.status(200).send(result);
-                }
-            });
+        catch (error) {
+            res.send(error);
         }
-        ;
-    });
+    }))();
 };
 exports.default = getAllUsers;
