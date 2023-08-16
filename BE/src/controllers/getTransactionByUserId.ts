@@ -6,7 +6,6 @@ const getTransactionByUserId = (req: Request, res: Response) => {
 
     (async () => {
         try {
-            console.log(req.params.id)
             const query = `
             SELECT u.id, u.name, u.address,
                 (

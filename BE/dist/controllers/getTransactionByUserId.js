@@ -17,7 +17,6 @@ const mySqlQuery_1 = __importDefault(require("./mySqlQuery"));
 const getTransactionByUserId = (req, res) => {
     (() => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            console.log(req.params.id);
             const query = `
             SELECT u.id, u.name, u.address,
                 (
